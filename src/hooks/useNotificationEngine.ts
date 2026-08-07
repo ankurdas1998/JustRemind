@@ -29,21 +29,36 @@ export function useNotificationEngine() {
       for (const task of tasksToNotify) {
         if (!task.id) continue;
 
-        // Fire the native Web Notification
+        const notificationTitle = "Task Due!";
+
         // We cast to `any` here because TS DOM types sometimes omit 'vibrate'
-        const options: any = {
-          body: task.title,
-          icon: "/vite.svg",
+        const notificationOptions: any = {
+          body: task.title, // Use the actual task title from the database!
+          icon: "/JustRemind/pwa-192x192.png",
           vibrate: [200, 100, 200],
         };
 
-        const notification = new Notification("Reminder Due!", options);
+        // 1. Try Service Worker first (Required for Android Mobile)
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.ready.then((registration) => {
+            registration.showNotification(
+              notificationTitle,
+              notificationOptions,
+            );
+          });
+        }
+        // 2. Fallback to standard Notification (For older Desktop browsers)
+        else if (typeof Notification !== "undefined") {
+          const fallbackNotification = new Notification(
+            notificationTitle,
+            notificationOptions,
+          );
 
-        // Click handler to bring the tab back into focus
-        notification.onclick = () => {
-          window.focus();
-          notification.close();
-        };
+          fallbackNotification.onclick = () => {
+            window.focus();
+            fallbackNotification.close();
+          };
+        }
 
         // Mark as notified in IndexedDB to prevent duplicate firing
         await db.tasks.update(task.id, { notified: true });
