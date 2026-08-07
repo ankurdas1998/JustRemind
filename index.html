@@ -2,27 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    
+    <!-- Safely map to public assets using Vite's base URL variable -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="/apple-touch-icon.png" />
+      href="%VITE_BASE_URL%apple-touch-icon.png" />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/favicon-32x32.png" />
+      href="%VITE_BASE_URL%favicon-32x32.png" />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="/favicon-16x16.png" />
+      href="%VITE_BASE_URL%favicon-16x16.png" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0" />
 
+    <!-- This fixes the 404 Manifest error! -->
     <link
       rel="manifest"
-      href="/manifest.webmanifest" />
+      href="%VITE_BASE_URL%manifest.webmanifest" />
+      
     <meta
       name="theme-color"
       content="#ffffff" />
@@ -31,6 +35,7 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Leave this exactly as is; Vite needs it to inject your JS -->
     <script
       type="module"
       src="/src/main.tsx"></script>
