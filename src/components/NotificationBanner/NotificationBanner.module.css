@@ -1,0 +1,35 @@
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #eff6ff;
+  /* Light blue */
+  border: 1px solid #bfdbfe;
+  color: #1e3a8a;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+  gap: var(--space-4);
+}
+
+.message {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.enableBtn {
+  background-color: var(--color-brand-primary);
+  color: white;
+  border: none;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.enableBtn:hover {
+  background-color: var(--color-brand-hover);
+}
