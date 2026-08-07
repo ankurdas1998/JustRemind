@@ -3,29 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     
-    <!-- Safely map to public assets using Vite's base URL variable -->
+    <!-- Use the correct built-in Vite variable: %BASE_URL% -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="%VITE_BASE_URL%apple-touch-icon.png" />
+      href="%BASE_URL%apple-touch-icon.png" />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="%VITE_BASE_URL%favicon-32x32.png" />
+      href="%BASE_URL%favicon-32x32.png" />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="%VITE_BASE_URL%favicon-16x16.png" />
+      href="%BASE_URL%favicon-16x16.png" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0" />
 
-    <!-- This fixes the 404 Manifest error! -->
+    <!-- This will correctly output /JustRemind/manifest.webmanifest -->
     <link
       rel="manifest"
-      href="%VITE_BASE_URL%manifest.webmanifest" />
+      href="%BASE_URL%manifest.webmanifest" />
       
     <meta
       name="theme-color"
@@ -35,7 +35,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <!-- Leave this exactly as is; Vite needs it to inject your JS -->
     <script
       type="module"
       src="/src/main.tsx"></script>
